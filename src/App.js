@@ -6,9 +6,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Max', age: 29, hobbie: 'Racing' },
-      { name: 'Marussya', age: 66, hobbie: 'Skying' },
-      { name: 'Victor', age: 22, hobbie: '' }
+      { id: 0, name: 'Max', age: 29, hobbie: 'Racing' },
+      { id: 1, name: 'Marussya', age: 66, hobbie: 'Skying' },
+      { id: 2, name: 'Victor', age: 22, hobbie: '' }
     ],
     otherState: 'some other state'
   }
@@ -16,10 +16,17 @@ class App extends Component {
   switchNameHandler = () => {
     this.setState({
       persons: [
-        { name: 'Max', age: 29, hobbie: 'Racing' },
-        { name: 'Masha', age: 222, hobbie: 'Skying' },
-        { name: 'Bob', age: 22, hobbie: 'Drinking' }
+        { id: 0, name: 'Max', age: 29, hobbie: 'Racing' },
+        { id: 1, name: 'Masha', age: 222, hobbie: 'Skying' },
+        { id: 2, name: 'Bob', age: 22, hobbie: 'Drinking' }
       ]
+    })
+  }
+
+  listPersons = () => {
+    const persons = this.state.persons || [];
+    return persons.map((person) => {
+    return (<Person key={person.id} name={person.name} age={person.age}>My Hobbies: {person.hobbie}</Person>)
     })
   }
 
@@ -29,12 +36,9 @@ class App extends Component {
         <h1>Hi, it's test-react-app</h1>
         <p>This is really working!</p>
         <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>Hobbie is: {this.state.persons[0].hobbie}</Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>Hobbie is: {this.state.persons[1].hobbie}</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Hobbie is: {this.state.persons[2].hobbie}</Person>
+        { this.listPersons() }
       </div>
       );
-      //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, it\'s test-react-app'))
   }
 }
 
