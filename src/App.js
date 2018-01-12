@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
-import './App.css';
-//import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 import Person from './Person/Person';
+
+const Div = styled.div`
+  text-align: center;
+`;
+
+const P = styled.p`
+  color: ${props => props.listSize <= 2 ? '#9966ff' : 'black'};
+  font-weight: ${props => props.listSize <= 1 ? 'bold' : 'normal'};
+`;
+
+const Button = styled.button`
+  /* Adapt the colours based on primary prop */
+  background: ${props => props.primary ? 'palevioletred' : 'white'};
+  color: ${props => props.primary ? 'white' : 'palevioletred'};
+  border: ${props => props.primary ? '#9966ff' : 'palevioletred'};
+  border: 1px solid;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${props => props.primary ? '#9966ff' : 'white'};
+    color: ${props => props.primary ? 'white' : '#9966ff'};
+    border: ${props => props.primary ? 'white' : '#9966ff'};  
+    border: 1px solid;
+    }
+`;
 
 class App extends Component {
 
@@ -13,17 +41,6 @@ class App extends Component {
     ],
     otherState: 'some other state',
     showPersons: false,
-
-    style: {
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      display: 'block',
-      margin: '16px auto',
-      backgroundColor: 'green',
-      color: 'white',
-    }
   };
 
   deletePersonHandler = (index) => {
@@ -55,15 +72,6 @@ class App extends Component {
 
   togglePersonsHandler = () => {
     this.setState({ showPersons: !this.state.showPersons });
-    const style = {...this.state.style};
-    
-    if (!this.state.showPersons) {
-      style.backgroundColor = 'red'; 
-    } else {
-      style.backgroundColor = 'green';
-    }
-
-    this.setState({ style: style });
   };
 
   listPersons = () => {
@@ -71,13 +79,12 @@ class App extends Component {
     return persons.map((person, index) => {
     return (
       <Person 
-      key={person.id} 
-      name={person.name} 
-      age={person.age}
-      // click={this.switchNameHandler.bind(this, 'MaxMax')}
-      click={() => this.deletePersonHandler(index)}
-      changed={(event) => this.nameChangeHandler(event, person.id)}>
-      My Hobbies: {person.hobbie}
+        key={person.id} 
+        name={person.name} 
+        age={person.age}
+        click={() => this.deletePersonHandler(index)}
+        changed={(event) => this.nameChangeHandler(event, person.id)}>
+        My Hobbies: {person.hobbie}
       </Person>)
     });
   };
@@ -87,31 +94,22 @@ class App extends Component {
     let persons = this.state.showPersons 
       ? this.listPersons() 
       : null;
-
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red')
-    };
-    if (this.state.persons.length <= 1) {
-      classes.push('bold')
-    };
     
     return (
-      <div className="App">
+      <Div>
         
         <h1>Hi, it's test-react-app</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+        <P listSize={this.state.persons.length}>This is really working!</P>
         
-        <button
-        key='1'
-        style={this.state.style}
-        onClick={this.togglePersonsHandler}
-        >Toggle Persons
-        </button>
+        <Button primary={this.state.showPersons}
+          key='1'
+          //style={this.state.style}
+          onClick={this.togglePersonsHandler}
+          >Toggle Persons
+        </Button>
         
         {persons}
-        
-      </div>
+      </Div>
       );
   }
 }
