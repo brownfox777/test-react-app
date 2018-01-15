@@ -4,5 +4,5 @@ import './index.css';
 import A from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<A />, document.getElementById('root'));
+ReactDOM.render(<A title='Relevant persons' />, document.getElementById('root'));
 registerServiceWorker();

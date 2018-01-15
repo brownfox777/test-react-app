@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 //import './Person.css';
 
@@ -17,18 +17,17 @@ const Div = styled.div`
   }
 `;
 
-const Person = (props) => {
-  return (
-    <Div>
-      <p onClick={props.click}>I'm { props.name }! And I'm { props.age } years old!</p>
-      <p>{ props.children }</p>
-      <input onChange={props.changed} value={props.name}/>
-    </Div>    
-  );
-};
+class Person extends Component {
+  render() {
+    return (
+      <Div>
+        <p onClick={this.props.click}>I'm { this.props.name }! And I'm { this.props.age } years old!</p>
+        <p>{ this.props.children }</p>
+        <input onChange={this.props.changed} value={this.props.name}/>
+      </Div>    
+    );
+  }
+} 
 
-// const myAge = () => {
-//   return Math.ceil(Math.random() * 66);
-// }
 
 export default Person;

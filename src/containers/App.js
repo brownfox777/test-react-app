@@ -68,13 +68,14 @@ class App extends Component {
     return (
       <Div>
         <Cockpit
+        appTitle={this.props.title}
         length={this.state.persons.length}
         showPersons={this.state.showPersons}
         click={this.togglePersonsHandler} />
      
         {this.persons()}
       </Div>
-      );
+    );
   }
 }
 

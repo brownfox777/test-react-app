@@ -29,7 +29,7 @@ const Button = styled.button`
 const Cockpit = (props) => {
   return (
     <div>
-      <h1>Hi, it's test-react-app</h1>
+      <h1>{props.appTitle}</h1>
       <P listSize={props.length}>This is really working!</P>        
       <Button primary={props.showPersons}
         onClick={props.click}>
