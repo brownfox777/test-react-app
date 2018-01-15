@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-//import './Person.css';
+// import './Person.css';
 
 const Div = styled.div`
   width: 60%;
@@ -18,16 +18,40 @@ const Div = styled.div`
 `;
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    console.log('Person is inside thr constructor now!', props);
+  }
+
+  componentWillMount() {
+    console.log('Person is inside the componentWillMount() now!');
+  }
+
+  componentDidMount() {
+    console.log('Person is inside the componentDidMount() now!');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('[UPDATE Person.js] Inside componentWillReceiveProps!', nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE Person.js] Inside shouldComponentUpdate!', nextProps, nextState);
+    return true;
+  }
+
   render() {
+    console.log('Person is inside the render() now!');
     return (
       <Div>
-        <p onClick={this.props.click}>I'm { this.props.name }! And I'm { this.props.age } years old!</p>
-        <p>{ this.props.children }</p>
-        <input onChange={this.props.changed} value={this.props.name}/>
-      </Div>    
+        <p onClick={this.props.click}>
+          I'm {this.props.name}! And I'm {this.props.age} years old!
+        </p>
+        <p>{this.props.children}</p>
+        <input onChange={this.props.changed} value={this.props.name} />
+      </Div>
     );
   }
-} 
-
+}
 
 export default Person;
