@@ -18,7 +18,6 @@ const Div = styled.div`
 `;
 
 const Person = (props) => {
-
   return (
     <Div>
       <p onClick={props.click}>I'm { props.name }! And I'm { props.age } years old!</p>
