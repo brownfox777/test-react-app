@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
@@ -7,7 +7,7 @@ const Div = styled.div`
   text-align: center;
 `;
 
-class App extends Component {
+class App extends PureComponent {
   constructor (props) {
     super (props);
     console.log ('App is inside thr constructor now!', props);
@@ -21,9 +21,10 @@ class App extends Component {
     console.log ('App is inside the componentDidMount() now!');
   }
 
+
   state = {
     persons: [
-      {id: 0, name: 'Marussya', age: 66, hobbie: 'Skying'},
+      {id: 0, name: 'Marussya', age: 77, hobbie: 'Skying'},
       {id: 1, name: 'Max', age: 29, hobbie: 'Racing'},
       {id: 2, name: 'Victor', age: 22, hobbie: ''},
       {id: 3, name: 'Bob', age: 19, hobbie: ''},
@@ -80,6 +81,7 @@ class App extends Component {
     console.log ('App is inside the render() now');
     return (
       <Div>
+        <button onClick={() => this.setState({showPersons: true})}>Show Persons</button>
         <Cockpit
           appTitle={this.props.title}
           length={this.state.persons.length}

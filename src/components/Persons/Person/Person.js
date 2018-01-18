@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import './Person.css';
 
@@ -17,7 +18,7 @@ const Div = styled.div`
   }
 `;
 
-class Person extends Component {
+class Person extends PureComponent {
   constructor(props) {
     super(props);
     console.log('Person is inside thr constructor now!', props);
@@ -35,10 +36,6 @@ class Person extends Component {
     console.log('[UPDATE Person.js] Inside componentWillReceiveProps!', nextProps);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[UPDATE Person.js] Inside shouldComponentUpdate!', nextProps, nextState);
-    return true;
-  }
 
   render() {
     console.log('Person is inside the render() now!');
@@ -53,5 +50,12 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func,
+};
 
 export default Person;
